@@ -10,6 +10,8 @@ import FormHelperText from "@mui/joy/FormHelperText";
 import IconButton from "@mui/joy/IconButton";
 import Alert from "@mui/joy/Alert";
 import ReportIcon from "@mui/icons-material/Report";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -29,8 +31,8 @@ export default function Login() {
     handleSubmit,
   } = useForm<FormValues>({
     defaultValues: {
-      email: "johndoe@mail.com",
-      password: "secret@2023",
+      email: VALID_EMAIL,
+      password: VALID_PASSWORD,
     },
     resolver: yupResolver(schema),
   });
@@ -114,7 +116,7 @@ export default function Login() {
                 color="neutral"
                 onClick={() => setVisible(!visible)}
               >
-                <i data-feather={visible ? "eye-off" : "eye"} />
+                {visible ? <VisibilityOffIcon /> : <VisibilityIcon />}
               </IconButton>
             }
             {...register("password")}
